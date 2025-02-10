@@ -99,7 +99,6 @@ def process_video_chunk(args):
     return dataset
 
 def process_video(video_path, video_name):
-    """Process a video file."""
     try:
         cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
@@ -131,7 +130,7 @@ def process_video(video_path, video_name):
         return []
 
 def create_csv_from_videos():
-    """Process all videos in the folder and create a CSV dataset."""
+    
     all_data = []
     video_files = [f for f in os.listdir(VIDEO_FOLDER) if f.endswith(('.mp4', '.mkv', '.avi'))]
 
@@ -146,8 +145,7 @@ def create_csv_from_videos():
 
         video_data = process_video(video_path, video_name)
         all_data.extend(video_data)
-
-    # Save the dataset to a CSV file
+        
     if all_data:
         df = pd.DataFrame(all_data)
         df.to_csv("video_tool_usage_dataset.csv", index=False)
